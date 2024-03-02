@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 8080;
 const { WebhookClient } = require("dialogflow-fulfillment");
+const welcomeIntent = require("./welcome-intent");
 
 app.get("/", (req, res) => {
   res.send(`It's alive!`);
@@ -14,7 +15,7 @@ app.post("/", express.json(), (req, res) => {
   });
 
   function welcome(agent) {
-    agent.add(`Welcome to my agent!`);
+    welcomeIntent(agent);
   }
 
   function fallback(agent) {
@@ -27,7 +28,7 @@ app.post("/", express.json(), (req, res) => {
   }
 
   let intentMap = new Map();
-  intentMap.set("Default Welcome Intent", welcome);
+  intentMap.set("Welcome Intent", welcome);
   intentMap.set("Default Fallback Intent", fallback);
   intentMap.set("Daily Affirmation Intent", dailyAffirmation);
   agent.handleRequest(intentMap);
