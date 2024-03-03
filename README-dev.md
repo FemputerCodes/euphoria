@@ -1,7 +1,7 @@
 # Prerequisites:
 
-Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk), which allows you to interact with gcloud from your local machine
-Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cloud Client Library.
+1. Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk), which allows you to interact with gcloud from your local machine
+2. Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cloud Client Library.
 
 # Create a DialogFlow Agent:
 
@@ -11,7 +11,7 @@ Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cl
    (set up an external HTTP post endpoint. It allows flexibility in choosing the programming language and platform for implementing the fulfillment)
 4. The URL section will be the URL to the server handling the requests.
 
-# Getting Started with App Engine:
+# Getting started with App Engine:
 
 1. Go to Google Cloud Console
 2. Select the project
@@ -33,7 +33,7 @@ Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cl
 
 # Setting up a webhook server:
 
-1. Set your project directory on your local machine and open up VSCode
+1. Set up your project directory on your local machine and open up VSCode
 
 2. Install Node.js by running `npm init -y` to start a new node project
 3. Install the following dependencies:
