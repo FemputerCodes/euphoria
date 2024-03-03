@@ -1,4 +1,4 @@
-const getRandom = require("./util/get-random");
+const { getRandom } = require("../utils/utils");
 
 const welcomes = [
   `Hey!`,
@@ -19,13 +19,14 @@ const assists = [
   `Is there something on your mind?`,
   `I'm here for you. What can I do to make things easier?`,
   `You know I've got your back. What can I do?`,
-  `Just let me add my superhero cape and call me Wonder Rue!`,
+  `Just let me put on my superhero cape and call me Wonder Rue!`,
   `I'm ready to save the day! What's the mission?`,
   `Anything you need, just let me know!`,
   `I've got your back. How can I support you?`,
 ];
 
 function welcomeIntent(agent) {
+  console.log("handling welcome intent");
   const voiceAssistant = agent.parameters.VoiceAssistant;
   let conv = `This is the welcome intent!`;
   const randomWelcome = getRandom(welcomes.length);

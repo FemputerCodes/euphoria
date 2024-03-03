@@ -68,6 +68,7 @@ const convertAffirmationType = (affirmationType) => {
 };
 
 function affirmationIntent(agent) {
+  console.log("handling affirmation intent");
   const affirmationType = agent.parameters.AffirmationType;
   let url = `https://api-portal-416020.uw.r.appspot.com/affirmations/random`;
   let conv = `This is the affirmation intent!`;
@@ -93,7 +94,6 @@ function affirmationIntent(agent) {
       });
   } else {
     conv = `Sorry! I don't have an affirmation like that.`;
-    console.log(conv);
     agent.add(conv);
   }
 }

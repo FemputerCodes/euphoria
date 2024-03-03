@@ -55,7 +55,8 @@ Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cl
 7. Update package.json to include:
    ```
    "scripts": {
-      "start": "node ./src/index.js"
+      "start": "node ./src/index.js",
+      "deploy": "gcloud app deploy"
    }
    ```
 8. Execute the app by running `npm start`
@@ -65,7 +66,7 @@ Install the DialogFlow CLI `npm install @google-cloud/dialogflow`, which is a Cl
 
 1. Load a new terminal window in VSCode
 2. Run `gcloud init` and select your project
-3. run `gcloud app deploy` to deploy your application
+3. run `gcloud app deploy` to deploy your application or run `npm run deploy`
 4. Run `gcloud app browse` or copy and paste the url to the web browser
 5. Copy the URL to the DialogFlow Console Fulfillment
 

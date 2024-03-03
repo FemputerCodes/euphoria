@@ -3,4 +3,4 @@ const getRandom = (len) => {
   return random;
 };
 
-module.exports = getRandom;
+module.exports = { getRandom };
