@@ -13,35 +13,34 @@ const negativeResponses = [
 
 function journalPromptIntent(agent) {
   console.log("handling journal prompt intent");
-  const promptType = agent.parameters.PromptType;
   const negativeType = agent.parameters.NegativeType;
+  let promptType = agent.parameters.PromptType;
   let url = `https://api-portal-416020.uw.r.appspot.com/journal-prompts/random`;
   let conv = `This is the journal prompt intent!`;
 
-  if (!negativeType) {
-    // check for prompt type
-    let newPromptType = convertPromptType(promptType);
-    if (newPromptType !== "none") {
-      url += `/${newPromptType}`;
-      console.log(url);
+  console.log("prompt type: ", promptType);
 
-      return axios
-        .get(url)
-        .then((res) => {
-          const journalPrompt = res.data.journalPrompt;
-          console.log(journalPrompt.text);
-          conv = `I got you! ${journalPrompt.text}`;
-          agent.add(conv);
-        })
-        .catch((error) => {
-          console.error(error);
-          conv = `I'm sorry! Something went wrong.`;
-          agent.add(conv);
-        });
-    } else {
-      conv = `Sorry! I don't have a journal prompt like that.`;
-      agent.add(conv);
+  // check if there's a negative type
+  if (!negativeType) {
+    if (promptType === "") {
+      promptType = "general";
     }
+    url += `/${promptType}`;
+    console.log("url: ", url);
+
+    return axios
+      .get(url)
+      .then((res) => {
+        const journalPrompt = res.data.journalPrompt;
+        console.log("journal prompt: ", journalPrompt.text);
+        conv = `I got you! ${journalPrompt.text}`;
+        agent.add(conv);
+      })
+      .catch((error) => {
+        console.error(error);
+        conv = `I'm sorry! Something went wrong.`;
+        agent.add(conv);
+      });
   } else {
     const randomNegative = getRandom(negativeResponses.length);
     conv = negativeResponses[randomNegative];
