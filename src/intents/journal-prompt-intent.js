@@ -1,57 +1,5 @@
 const axios = require("axios");
-const { getRandom } = require("../utils/utils");
-
-const general = [
-  "general",
-  "exciting",
-  "fun",
-  "generic",
-  "any",
-  "easy",
-  "enjoyable",
-  "entertaining",
-  "amusing",
-  "pleasant",
-];
-
-const reflection = [
-  "reflection",
-  "reflective",
-  "introspective",
-  "introspection",
-  "thoughtfulness",
-  "self-reflection",
-  "self-introspection",
-  "contemplative",
-  "reflecting",
-  "self-examination",
-];
-
-const gratitude = [
-  "gratitude",
-  "thankfulness",
-  "appreciation",
-  "thanks",
-  "acknowledgement",
-  "appreciating",
-  "self-appreciation",
-  "grateful",
-  "gratefulness",
-  "recognition",
-];
-
-const goals = [
-  "goals",
-  "goal-setting",
-  "goal-oriented",
-  "aims",
-  "pursuits",
-  "ambitions",
-  "aspirations",
-  "intentions",
-  "obectives",
-  "targets",
-];
+const { getRandom, convertPromptType } = require("../utils/utils");
 
 const negativeResponses = [
   `You do realize you're asking for bad advice, right? Just checking.`,
@@ -62,17 +10,6 @@ const negativeResponses = [
   `Sorry, I left my 'spread negativity' manual at home today. But hey, how about a fun journal prompt to lighten the mood?"`,
   `Well, that's a unique request. How about we go for a pleasant journal prompt to lift your spirits instead? You're stronger than any temporary low.`,
 ];
-
-const convertPromptType = (promptType) => {
-  console.log("original prompt type: ", promptType);
-  if (general.includes(promptType) || promptType === "") promptType = "general";
-  else if (reflection.includes(promptType)) promptType = "reflection";
-  else if (gratitude.includes(promptType)) promptType = "gratitude";
-  else if (goals.includes(promptType)) promptType = "goals";
-  else promptType = "none";
-  console.log("new prompt type: ", promptType);
-  return promptType;
-};
 
 function journalPromptIntent(agent) {
   console.log("handling journal prompt intent");
