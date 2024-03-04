@@ -1,6 +1,6 @@
 const { getRandom } = require("../utils/utils");
 
-const welcomes = [
+const welcomeResponses = [
   `Hey!`,
   `What's up!`,
   `Hi there!`,
@@ -12,7 +12,7 @@ const welcomes = [
   `Yay! You're here!`,
 ];
 
-const assists = [
+const assistResponses = [
   `What do you need?`,
   `Tell me what I can do!`,
   `How can I assist you?`,
@@ -29,17 +29,17 @@ function welcomeIntent(agent) {
   console.log("handling welcome intent");
   const voiceAssistant = agent.parameters.VoiceAssistant;
   let conv = `This is the welcome intent!`;
-  const randomWelcome = getRandom(welcomes.length);
-  const randomAssist = getRandom(assists.length);
-  conv = welcomes[randomWelcome];
+  const randomWelcome = getRandom(welcomeResponses.length);
+  const randomAssist = getRandom(assistResponses.length);
+  conv = welcomeResponses[randomWelcome];
 
   if (!voiceAssistant) {
     conv += ` My name is Rue!`;
   }
 
-  conv += ` Welcome to the Euphoria app, where I provide daily affirmations, journal prompts, and suggestions to help you take a break and relax. `;
+  conv += ` Welcome to the Euphoria app, where I provide daily affirmations, journal prompts, and suggestions to help you take a break and relax.`;
   conv += ` `;
-  conv += assists[randomAssist];
+  conv += assistResponses[randomAssist];
 
   agent.add(conv);
 }
