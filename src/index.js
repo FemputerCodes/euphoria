@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const { WebhookClient } = require("dialogflow-fulfillment");
 const welcome = require("./intents/welcome-intent");
 const affirmation = require("./intents/affirmation-intent");
+const journalPrompt = require("./intents/journal-prompt-intent.js");
 const fallback = require("./intents/fallback-intent");
 
 app.use(cors());
@@ -22,6 +23,7 @@ app.post("/", express.json(), (req, res) => {
   let intentMap = new Map();
   intentMap.set("Welcome Intent", welcome);
   intentMap.set("Affirmation Intent", affirmation);
+  intentMap.set("Journal Prompt Intent", journalPrompt);
   intentMap.set("Default Fallback Intent", fallback);
   agent.handleRequest(intentMap);
 });

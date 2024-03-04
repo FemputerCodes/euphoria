@@ -13,6 +13,8 @@
 
 # Getting started with App Engine:
 
+App Engine: A fully managed platform-as-a-service (PaaS) for deploying websites and APIs. App Engine expects your application to be able to handle requests on the port specified by the process.env.PORT variable.
+
 1. Go to Google Cloud Console
 2. Select the project
 3. Go to the App Engine Dashboard
@@ -70,6 +72,13 @@
 4. Run `gcloud app browse` or copy and paste the url to the web browser
 5. Copy the URL to the DialogFlow Console Fulfillment
 
+   # Alternative:
+
+   1. Install [ngrok](https://dashboard.ngrok.com/get-started/setup/macos) globally
+   2. Deploy your app online by running `ngrok http http://localhost:8080` globally
+   3. Copy the Forwarding url and test in a browser
+   4. Copy the URL to the DialogFlow Console Fulfillment
+
 # Debugging:
 
 1. To debug errors, run `gcloud app logs read`
@@ -78,3 +87,4 @@
 
 https://cloud.google.com/appengine/docs/an-overview-of-app-engine
 https://cloud.google.com/appengine/docs/standard/nodejs/building-app
+https://www.youtube.com/watch?v=eUlI8R1u9TE
