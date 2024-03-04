@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { getRandom, negativeResponses } = require("../utils/utils");
+const { getRandom } = require("../utils/utils");
 
 const general = [
   "general",
