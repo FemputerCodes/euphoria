@@ -7,7 +7,6 @@ const welcome = require("./intents/welcome-intent");
 const affirmation = require("./intents/affirmation-intent");
 const journalPrompt = require("./intents/journal-prompt-intent");
 const takeBreak = require("./intents/take-break-intent");
-const negativity = require("./intents/catch-negativity-intent");
 const fallback = require("./intents/fallback-intent");
 
 app.use(cors());
@@ -27,7 +26,6 @@ app.post("/", express.json(), (req, res) => {
   intentMap.set("Affirmation Intent", affirmation);
   intentMap.set("Journal Prompt Intent", journalPrompt);
   intentMap.set("Take Break Intent", takeBreak);
-  intentMap.set("Catch Negativity Intent", negativity);
   intentMap.set("Default Fallback Intent", fallback);
   agent.handleRequest(intentMap);
 });
