@@ -35,7 +35,7 @@ function takeBreakIntent(agent) {
     })
     .catch((error) => {
       console.error(error);
-      conv = `I'm sorry! Something went wrong.`;
+      conv = `I'm sorry! Something happened while fetching a step back suggestion.`;
       agent.add(conv);
     });
 }

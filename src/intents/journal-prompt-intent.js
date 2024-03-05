@@ -24,7 +24,7 @@ function journalPromptIntent(agent) {
     })
     .catch((error) => {
       console.error(error);
-      conv = `I'm sorry! Something went wrong.`;
+      conv = `I'm sorry! Something went wrong while trying to fetch the journal prompt.`;
       agent.add(conv);
     });
 }

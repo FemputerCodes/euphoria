@@ -6,11 +6,10 @@ function affirmationIntent(agent) {
   let url = `https://api-portal-416020.uw.r.appspot.com/affirmations/random`;
   let conv = `This is the affirmation intent!`;
 
-  console.log("affirmation type:", affirmationType);
-
-  if (affirmationType === "") {
+  if (affirmationType === "" || affirmationType === undefined) {
     affirmationType = "positivity";
   }
+
   url += `/${affirmationType}`;
   console.log("url: ", url);
 
@@ -19,12 +18,13 @@ function affirmationIntent(agent) {
     .then((res) => {
       const affirmation = res.data.affirmation;
       console.log("affirmation: ", affirmation.text);
+      console.log("affirmation type: ", affirmation.type);
       conv = `I got you! Repeat after me: ${affirmation.text}`;
       agent.add(conv);
     })
     .catch((error) => {
       console.error(error);
-      conv = `I'm sorry! Something happened.`;
+      conv = `I'm sorry! Something happend while fetching the affirmation.`;
       agent.add(conv);
     });
 }
