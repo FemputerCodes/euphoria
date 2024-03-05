@@ -23,8 +23,11 @@ app.post("/", express.json(), (req, res) => {
   let intentMap = new Map();
   intentMap.set("Welcome Intent", welcome);
   intentMap.set("Affirmation Intent", affirmation);
+  intentMap.set("Affirmation Intent - Another", affirmation);
   intentMap.set("Journal Prompt Intent", journalPrompt);
+  intentMap.set("Journal Prompt Intent - Another", journalPrompt);
   intentMap.set("Take Break Intent", takeBreak);
+  intentMap.set("Take Break Intent - Another", takeBreak);
   agent.handleRequest(intentMap);
 });
 
