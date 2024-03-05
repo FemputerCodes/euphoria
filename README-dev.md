@@ -72,16 +72,13 @@ App Engine: A fully managed platform-as-a-service (PaaS) for deploying websites 
 4. Run `gcloud app browse` or copy and paste the url to the web browser
 5. Copy the URL to the DialogFlow Console Fulfillment
 
-   # Alternative:
-
-   1. Install [ngrok](https://dashboard.ngrok.com/get-started/setup/macos) globally
-   2. Deploy your app online by running `ngrok http http://localhost:8080` globally
-   3. Copy the Forwarding url and test in a browser
-   4. Copy the URL to the DialogFlow Console Fulfillment
-
 # Debugging:
 
 1. To debug errors, run `gcloud app logs read`
+2. It's also helpful to use [ngrok](https://dashboard.ngrok.com/get-started/setup/macos) to see your console logs in VSCode
+3. Instead of using gcloud, deploy your app online by running `ngrok http http://localhost:8080` globally
+4. Copy the Forwarding url and test in a browser
+5. Copy the URL to the DialogFlow Console Fulfillment
 
 # Sources:
 
