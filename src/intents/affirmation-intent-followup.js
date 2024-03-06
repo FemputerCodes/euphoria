@@ -1,10 +1,23 @@
 const axios = require("axios");
 
 function affirmationIntent(agent) {
-  console.log("handling affirmation intent");
+  console.log("handling affirmation intent followup");
+  const affirmationContext = agent.context.get(`affirmation_context`);
   let affirmationType = agent.parameters.AffirmationType;
   let url = `https://api-portal-416020.uw.r.appspot.com/affirmations/random`;
-  let conv = `This is the affirmation intent!`;
+  let conv = `This is the affirmation intent followup!`;
+
+  if (affirmationContext) {
+    console.log(affirmationContext);
+    if (!affirmationType) {
+      affirmationType = affirmationContext.parameters.mainAffirmationType;
+      conv = `Sure! Another ${affirmationType} affirmation coming right up!`;
+    } else {
+      const properAffirmationType =
+        affirmationType.charAt(0).toUpperCase() + affirmationType.slice(1);
+      conv = `Absolutely! ${properAffirmationType} affirmation coming right up!`;
+    }
+  }
 
   if (affirmationType === "" || affirmationType === undefined) {
     affirmationType = "positivity";
@@ -21,16 +34,8 @@ function affirmationIntent(agent) {
       const affirmation = res.data.affirmation;
       console.log("affirmation: ", affirmation.text);
       console.log("affirmation type: ", affirmation.type);
-      const properAffirmationType =
-        affirmationType.charAt(0).toUpperCase() + affirmationType.slice(1);
-      conv = `I got you! ${properAffirmationType} affirmation coming right up!`;
       conv += ` Repeat after me: ${affirmation.text}`;
       agent.add(conv);
-
-      // set context
-      agent.context.set(`affirmation_context`, 20, {
-        mainAffirmationType: affirmationType,
-      });
     })
     .catch((error) => {
       console.error(error);
