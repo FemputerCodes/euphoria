@@ -9,7 +9,6 @@ function affirmationIntent(agent) {
   if (affirmationType === "" || affirmationType === undefined) {
     affirmationType = "positivity";
   }
-
   console.log(affirmationType);
 
   url += `/${affirmationType}`;

@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-function affirmationIntent(agent) {
+function affirmationIntentFollowup(agent) {
   console.log("handling affirmation intent followup");
   const affirmationContext = agent.context.get(`affirmation_context`);
   let affirmationType = agent.parameters.AffirmationType;
@@ -44,4 +44,4 @@ function affirmationIntent(agent) {
     });
 }
 
-module.exports = affirmationIntent;
+module.exports = affirmationIntentFollowup;

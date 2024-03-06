@@ -1,14 +1,28 @@
 const axios = require("axios");
 
-function journalPromptIntent(agent) {
-  console.log("handling journal prompt intent");
+function journalPromptIntentFollowup(agent) {
+  console.log("handling journal prompt intent followup");
+  const journalPromptContext = agent.context.get(`journal_prompt_context`);
   let promptType = agent.parameters.PromptType;
   let url = `https://api-portal-416020.uw.r.appspot.com/journal-prompts/random`;
-  let conv = `This is the journal prompt intent!`;
+  let conv = `This is the journal prompt intent followup!`;
+
+  if (journalPromptContext) {
+    console.log(journalPromptContext);
+    if (!promptType) {
+      promptType = journalPromptContext.parameters.mainPromptType;
+      conv = `Sure! Another ${promptType} journal prompt coming right up!`;
+    } else {
+      const properPromptType =
+        promptType.charAt(0).toUpperCase() + promptType.slice(1);
+      conv = `Absolutely! ${properPromptType} journal prompt coming right up!`;
+    }
+  }
 
   if (promptType === "") {
     promptType = "general";
   }
+
   console.log("prompt type: ", promptType);
 
   url += `/${promptType}`;
@@ -20,16 +34,8 @@ function journalPromptIntent(agent) {
       const journalPrompt = res.data.journalPrompt;
       console.log("journal prompt: ", journalPrompt.text);
       console.log("journal prompt type: ", journalPrompt.type);
-      const properPromptType =
-        promptType.charAt(0).toUpperCase() + promptType.slice(1);
-      conv = `I got you! ${properPromptType} journal prompt coming right up!`;
       conv += ` ${journalPrompt.text}`;
       agent.add(conv);
-
-      // set context
-      agent.context.set(`journal_prompt_context`, 20, {
-        mainPromptType: promptType,
-      });
     })
     .catch((error) => {
       console.error(error);
@@ -38,4 +44,4 @@ function journalPromptIntent(agent) {
     });
 }
 
-module.exports = journalPromptIntent;
+module.exports = journalPromptIntentFollowup;
