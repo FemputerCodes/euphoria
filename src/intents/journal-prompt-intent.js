@@ -23,7 +23,7 @@ function journalPromptIntent(agent) {
       const properPromptType =
         promptType.charAt(0).toUpperCase() + promptType.slice(1);
       // conv = `I got you! ${properPromptType} journal prompt coming right up!`;
-      conv = `This should work`;
+      conv = `This should work.`;
       conv += ` ${journalPrompt.text}`;
       agent.add(conv);
 
