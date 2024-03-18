@@ -2,7 +2,6 @@ const { default: axios } = require("axios");
 
 function takeBreakIntent(agent) {
   console.log("handling take break intent");
-  const negativeType = agent.parameters.NegativeType;
   let breakLocation = agent.parameters.BreakLocation;
   let breakType = agent.parameters.BreakType;
   let breakLength = agent.parameters.BreakLength;
