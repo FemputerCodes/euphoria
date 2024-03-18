@@ -9,6 +9,7 @@ const affirmationFollowup = require("./intents/affirmation-intent-followup");
 const journalPrompt = require("./intents/journal-prompt-intent");
 const journalPromptFollowup = require("./intents/journal-prompt-intent-followup");
 const takeBreak = require("./intents/take-break-intent");
+const takeBreakFollowup = require("./intents/take-break-intent-followup");
 
 app.use(cors());
 
@@ -29,7 +30,7 @@ app.post("/", express.json(), (req, res) => {
   intentMap.set("Journal Prompt Intent", journalPrompt);
   intentMap.set("Journal Prompt Intent - Another", journalPromptFollowup);
   intentMap.set("Take Break Intent", takeBreak);
-  intentMap.set("Take Break Intent - Another", takeBreak);
+  intentMap.set("Take Break Intent - Another", takeBreakFollowup);
   agent.handleRequest(intentMap);
 });
 

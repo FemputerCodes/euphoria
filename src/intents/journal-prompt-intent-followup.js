@@ -11,7 +11,6 @@ function journalPromptIntentFollowup(agent) {
     console.log(journalPromptContext);
     if (!promptType) {
       promptType = journalPromptContext.parameters.mainPromptType;
-      // conv = `Sure! Another ${promptType} journal prompt coming right up!`;
       conv = `Sure! Here's another`;
     } else {
       const properPromptType =

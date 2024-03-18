@@ -1,13 +1,28 @@
 const { default: axios } = require("axios");
 
-function takeBreakIntent(agent) {
-  console.log("handling take break intent");
+function takeBreakIntentFollowup(agent) {
+  console.log("handling take break intent followup");
+  const breakContext = agent.context.get(`take_break_context`);
   let breakLocation = agent.parameters.BreakLocation;
   let breakType = agent.parameters.BreakType;
   let breakLength = agent.parameters.BreakLength;
   let url = `https://api-portal-416020.uw.r.appspot.com/step-backs/random`;
-  let conv = `This is the take break intent!`;
+  let conv = `This is the take break intent followup!`;
 
+  if (breakContext) {
+    console.log(breakContext);
+    conv = `Sure! Here's a suggestion for your break:`;
+    const contextParams = breakContext.parameters;
+    if (contextParams.BreakLocation) {
+      breakLocation = contextParams.BreakLocation;
+    }
+    if (contextParams.BreakType) {
+      breakType = contextParams.BreakType;
+    }
+    if (contextParams.BreakLength) {
+      breakLength = contextParams.BreakLength;
+    }
+  }
   console.log("break location: ", breakLocation);
   console.log("break type: ", breakType);
   console.log("break length: ", breakLength);
@@ -31,13 +46,6 @@ function takeBreakIntent(agent) {
       console.log("break: ", takeBreak.text);
       conv = `${takeBreak.text}`;
       agent.add(conv);
-
-      // set context
-      agent.context.set(`take_break_context`, 20, {
-        mainBreakLocation: breakLocation,
-        mainBreakType: breakType,
-        mainBreakLength: breakLength,
-      });
     })
     .catch((error) => {
       console.error(error);
@@ -46,4 +54,4 @@ function takeBreakIntent(agent) {
     });
 }
 
-module.exports = takeBreakIntent;
+module.exports = takeBreakIntentFollowup;
